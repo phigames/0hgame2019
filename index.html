@@ -40,13 +40,13 @@
 <table>
 <tr>
 <td>
-feed me:<br/>
+<b>feed me:</b><br/>
 <button onclick="feed(0.5);happy(1);update(true);">cookies</button><br/>
 <button onclick="feed(0.7);happy(0.5);update(true);">burger</button><br/>
 <button onclick="feed(0.2);happy(-0.2);update(true);">salad</button><br/>
 </td>
 <td>
-make me:<br/>
+<b>make me:</b><br/>
 <button onclick="feed(-0.3);happy(-0.5);update(true);">exercise</button><br/>
 <button onclick="feed(0.2);happy(0.7);update(true);">watch tv</button><br/>
 <button onclick="feed(-0.1);happy(1);update(true);">socialize</button><br/>
@@ -63,8 +63,8 @@ function update(user) {
     showBody = Math.max(0, Math.min(3, Math.floor(feediness)));
     document.getElementById("happy").className = "happy" + showHappy;
     document.getElementById("body").className = "body" + showBody;
-    document.getElementById("happynum").innerHTML = "happy: " + happiness;
-    document.getElementById("bodynum").innerHTML = "fat: " + feediness;
+    document.getElementById("happynum").innerHTML = "happy: " + happiness.toFixed(1);
+    document.getElementById("bodynum").innerHTML = "fat: " + feediness.toFixed(1);
     if (feediness < 0) {
         alert("congratulations, you starved\nscore: " + did);
         location.reload();
@@ -93,5 +93,5 @@ function happy(x) {
     happiness += x;
 }
 update(false);
-setInterval(function() { feed(-0.1); happy(-0.1); update(false); }, 1000);
+setInterval(function() { feed(-0.1); happy(-0.1); update(false); }, 500);
 </script>
