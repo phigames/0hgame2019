@@ -34,21 +34,43 @@
 </style>
 <div id="happy" class="happy0"></div>
 <div id="body" class="body0"></div>
+<span id="happynum"></span>
+<span id="bodynum"></span>
 <table>
 <tr>
 <td>
 feed me:<br/>
-<button onclick="feed(1);happy(3)">cookies</button><br/>
-<button onclick="feed(2);happy(2)">burger</button><br/>
-<button onclick="feed(3);happy(-2)">salad</button><br/>
+<button onclick="feed(0.5);happy(1)">cookies</button><br/>
+<button onclick="feed(0.7);happy(0.5)">burger</button><br/>
+<button onclick="feed(0.2);happy(-0.2)">salad</button><br/>
 </td>
 <td>
 make me:<br/>
-<button onclick="feed(-3);happy(-2)">exercise</button><br/>
-<button onclick="feed(0);happy(1)">watch tv</button><br/>
-<button onclick="feed(-2);happy(2)">socialize</button><br/>
+<button onclick="feed(-0.3);happy(-0.5)">exercise</button><br/>
+<button onclick="feed(0.2);happy(0.7)">watch tv</button><br/>
+<button onclick="feed(-0.1);happy(1)">socialize</button><br/>
 </td>
 </tr>
 </table>
 <script>
+var feediness = 1.9;
+var happiness = 1.9;
+function update() {
+    showHappy = Math.max(0, Math.min(3, Math.floor(happiness)));
+    showBody = Math.max(0, Math.min(3, Math.floor(feediness)));
+    document.getElementById("happy").className = "happy" + showHappy;
+    document.getElementById("body").className = "body" + showBody;
+    document.getElementById("happynum").innerHTML = "happy: " + happiness;
+    document.getElementById("bodynum").innerHTML = "fat: " + feediness;
+}
+function feed(x) {
+    feediness += x;
+    update();
+}
+function happy(x) {
+    happiness += x;
+    update();
+}
+update();
+setInterval(function() { feed(-0.1); happy(-0.1) }, 1000);
 </script>
